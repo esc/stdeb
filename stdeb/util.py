@@ -1126,7 +1126,7 @@ def build_dsc(debinfo,
     #    J. debian/source/format
     os.mkdir(os.path.join(debian_dir,'source'))
     fd = open( os.path.join(debian_dir,'source','format'), mode='w')
-    fd.write('1.0\n')
+    fd.write('3.0 (quilt)\n')
     fd.close()
 
     if debian_dir_only:
@@ -1199,13 +1199,11 @@ def build_dsc(debinfo,
     #    Re-generate tarball using best practices see
     #    http://www.debian.org/doc/developers-reference/ch-best-pkging-practices.en.html
     #    call "dpkg-source -b new_dirname orig_dirname"
-    log.info('CALLING dpkg-source -b %s %s (in dir %s)'%(
+    log.info('CALLING dpkg-source -b %s (in dir %s)'%(
         repackaged_dirname,
-        repackaged_orig_tarball,
         dist_dir))
 
     dpkg_source('-b',repackaged_dirname,
-                repackaged_orig_tarball,
                 cwd=dist_dir)
 
     if 1:

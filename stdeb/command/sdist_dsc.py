@@ -76,7 +76,8 @@ class sdist_dsc(common_debian_package_command):
             expand_sdist_file(self.use_premade_distfile,cwd=expand_dir)
 
             is_tgz=False
-            if self.use_premade_distfile.lower().endswith('.tar.gz'):
+            fext = '.'.join(self.use_premade_distfile.rsplit('.', 2)[-2:])
+            if fext.lower() in ('tar.gz', 'tar.bz2', 'tar.xz'):
                 is_tgz=True
 
             # now the sdist package is expanded in expand_dir
