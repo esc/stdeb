@@ -1129,6 +1129,11 @@ def build_dsc(debinfo,
     fd.write('3.0 (quilt)\n')
     fd.close()
 
+    #    K. debian/clean
+    with open(os.path.join(debian_dir, 'clean'), 'a') as fp:
+        fp.write(
+        """*/*.egg-info/*\n*.egg-info/*\n*/*.EGG-INFO/*\n*.EGG-INFO/*' """)
+
     if debian_dir_only:
         return
 
